@@ -61,8 +61,8 @@ public class UserController {
     //////
     @GetMapping("/delete-users")
     public String getDeleteUsersPage(Model model, @AuthenticationPrincipal UserDetails userDetails) {
-        List<User> users = userService.findAll();
         String currentUserEmail = userDetails.getUsername();
+        List<User> users = userService.findAll();
         // Filtra la lista degli utenti in modo che l'utente corrente non ci sia
         List<User> filteredUserList = users.stream()
                 .filter(user -> !user.getEmail().equals(currentUserEmail))
