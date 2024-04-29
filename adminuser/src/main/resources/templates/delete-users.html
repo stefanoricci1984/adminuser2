@@ -50,7 +50,7 @@
         <tr th:each="user : ${users}">
             <td th:text="${user.email}"></td>
             <td>
-                <form th:action="@{/delete-user}" method="post">
+                <form th:action="@{/delete-user}" method="post" id="deleteForm">
                     <input type="hidden" name="email" th:value="${user.email}" />
                     <button type="button" class="btn btn-danger" onclick="confirmDelete('${user.email}')">Delete</button>
                 </form>
@@ -71,6 +71,7 @@
 <script>
     function confirmDelete(email) {
         if (confirm("Sei sicuro di voler eliminare questo utente?")) {
+            document.getElementById("deleteForm").submit();
         }
     }
 
